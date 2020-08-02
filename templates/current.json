@@ -1,0 +1,14 @@
+{
+    "awsIotSqlVersion": "2016-03-23",
+    "sql": "SELECT * FROM 'pebble-50'",
+    "ruleDisabled": false,
+    "actions": [
+        {
+            "s3": {
+                "roleArn": "arn:aws:iam::363205959602:role/service-role/pebble",
+                "bucketName": "pebble-store",
+                "key": "${topic()}/${timestamp()}"
+            }
+        }
+    ]
+}
