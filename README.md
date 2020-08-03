@@ -1,5 +1,7 @@
 # pebble-backend
 
+![](backend_arch.png)
+
 ## Quick start.
 - start.sh   Start 50 clients to send messages to mqtt in the background.
 - stop.sh    Stop all running clients.
