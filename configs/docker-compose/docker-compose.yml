@@ -1,0 +1,25 @@
+version: '2.2'
+services:
+  thingsboard:
+    restart: always
+    image: "thingsboard/tb-postgres"
+    ports:
+      - "8080:9090"
+      - "1883:1883"
+      - "5683:5683/udp"
+    environment:
+      TB_QUEUE_TYPE: in-memory
+    volumes:
+      - ~/data:/data
+      - ~/logs:/var/log/thingsboard
+
+  thingsboard-gateway:
+     restart: always
+     image: "thingsboard/tb-gateway"
+     volumes:
+       - ~/conf/tb-gateway/conf:/thingsboard_gateway/config
+       - ~/conf/tb-gateway/extensions:/thingsboard_gateway/extensions
+       - ~/conf/tb-gateway/logs:/thingsboard_gateway/logs
+       - ~/conf/keys:/thingsboard_gateway/keys
+     links:
+       - thingsboard

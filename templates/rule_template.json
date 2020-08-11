@@ -1,6 +1,6 @@
 {
     "awsIotSqlVersion": "2016-03-23",
-    "sql": "SELECT * FROM 'pebble-_ID_'",
+    "sql": "SELECT * FROM 'device/pebble-_ID_/data'",
     "ruleDisabled": false,
     "actions": [
         {

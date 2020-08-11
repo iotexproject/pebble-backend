@@ -23,3 +23,29 @@ The message will be stored in the 'pebble-store' bucket in s3, like:
 ```
 pebble-store/pebble-(1,2,3...50)/<timestamp>
 ```
+
+## Install and configure thingsboard with gateway
+The [Architecture](https://thingsboard.io/images/gateway/python-gateway-animd-ff.svg)
+### Our data flow is
+```
+Device(SDK) --> aws iot --> s3
+                       |
+                       + --> thingsboard gateway --> thingsboard
+```
+
+### Prerequisites
+[Install Docker CE](https://docs.docker.com/engine/installation/)
+[Install Docker Compose](https://docs.docker.com/compose/install/)
+
+### Start
+Use the file configs/docker-compose/docker-compose.yml
+docker-compose up -d
+
+### Configure gateway
+Login Thingsboard as tenant and create a gateway
+Copy it's token
+Set it to configs/tb-gateway/tb_gateway.yaml:
+```
+thingsboard.security.accessToken=<token>
+```
+Restart the thingsboard gateway

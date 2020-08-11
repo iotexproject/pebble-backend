@@ -1,0 +1,85 @@
+{
+  "broker": {
+    "name":"AWD Iot Pebble MQTT Broker",
+    "host":"a11homvea4zo8t-ats.iot.us-east-1.amazonaws.com",
+    "port": 8883,
+    "security": {
+      "caCert": "/thingsboard_gateway/keys/AmazonRootCA1.pem",
+      "privateKey": "/thingsboard_gateway/keys/efa1728ea8-private.pem.key",
+      "cert": "/thingsboard_gateway/keys/efa1728ea8-certificate.pem.crt"
+    }
+  },
+  "mapping": [
+   {
+       "topicFilter": "device/+/data",
+       "converter": {
+         "type": "json",
+         "deviceNameTopicExpression": "(?<=device\/)(.*?)(?=\/data)",
+         "deviceTypeTopicExpression": "Pebble",
+         "timeout": 60000,
+         "timeseries": [
+           {
+             "type": "integer",
+             "key": "snr",
+             "value": "${message.SNR}"
+           },
+ 	  {
+             "type": "double",
+             "key": "vbat",
+             "value": "${message.VBAT}"
+           },
+ 	  {
+             "type": "double",
+             "key": "latitude",
+             "value": "${message.latitude}"
+           },
+ 	  {
+             "type": "double",
+             "key": "longitude",
+             "value": "${message.longitude}"
+           },
+ 	  {
+             "type": "double",
+             "key": "gas_resistance",
+             "value": "${message.gas_resistance}"
+           },
+ 	  {
+             "type": "double",
+             "key": "temperature",
+             "value": "${message.temperature}"
+           },
+ 	  {
+             "type": "double",
+             "key": "pressure",
+             "value": "${message.pressure}"
+           },
+ 	  {
+             "type": "double",
+             "key": "humidity",
+             "value": "${message.humidity}"
+           },
+ 	  {
+             "type": "array",
+             "key": "gyroscope",
+             "value": "${message.gyroscope}"
+           },
+ 	  {
+             "type": "array",
+             "key": "accelerometer",
+             "value": "${message.accelerometer}"
+           },
+ 	  {
+             "type": "string",
+             "key": "timestamp",
+             "value": "${message.timestamp}"
+           }
+         ]
+       }
+    }
+  ],
+  "attributeRequests":  [],
+  "connectRequests": [],
+  "disconnectRequests": [],
+  "attributeUpdates": [],
+  "serverSideRpc": []
+}
