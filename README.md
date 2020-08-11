@@ -36,8 +36,8 @@ Device(SDK) --> aws iot --> s3
 ```
 
 ### Prerequisites
-[Install Docker CE](https://docs.docker.com/engine/installation/)
-[Install Docker Compose](https://docs.docker.com/compose/install/)
+- [Install Docker CE](https://docs.docker.com/engine/installation/)
+- [Install Docker Compose](https://docs.docker.com/compose/install/)
 
 ### Start
 Use the file configs/docker-compose/docker-compose.yml
