@@ -30,6 +30,7 @@ run.py is a command to start a client, accepting parameters:
 -w | --websocket: Use MQTT over WebSocket
 -id | --clientId: Targeted client id
 -pb | --publish: Publish payload
+-pf | --publish-file: Publish payload with file
 ```
 
 run.p will send a message every 30 seconds
