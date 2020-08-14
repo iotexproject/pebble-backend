@@ -3,6 +3,19 @@
 ![](backend_arch.png)
 
 ## Quick start.
+### Prerequisites
+####
+```
+sudo apt-get update
+sudo apt install python3-pip
+```
+
+#### Install SDK for mqtt
+```
+pip3 install AWSIoTPythonSDK
+```
+
+#### startup
 - start.sh   Start 50 clients to send messages to mqtt in the background.
 - stop.sh    Stop all running clients.
 
