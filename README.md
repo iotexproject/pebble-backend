@@ -59,6 +59,7 @@ Make directories for start thingsboard and thingsboard gateway
 mkdir ~/{data,logs}
 mkdir -p ~/conf/keys
 mdkir -p ~/conf/tb-gateway/{conf,extensions,logs}
+```
 
 Use the file configs/docker-compose/docker-compose.yml
 ```
