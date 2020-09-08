@@ -69,7 +69,7 @@ docker-compose up -d
 
 ### Configure gateway
 Login Thingsboard as tenant and create a gateway
-Copy it's token
+Copy it &lsquo;s token
 Set it to configs/tb-gateway/tb_gateway.yaml:
 ```
 thingsboard.security.accessToken=&lt;token&gt;
