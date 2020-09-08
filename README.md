@@ -33,7 +33,7 @@ run.py is a command to start a client, accepting parameters:
 -pf | --publish-file: Publish payload with file
 ```
 
-run.p will send a message every 30 seconds
+run.py will send a message every 30 seconds
 
 The message will be stored in the 'pebble-store' bucket in s3, like:
 ```
@@ -71,10 +71,12 @@ Login Thingsboard as tenant and create a gateway
 Copy it's token
 Set it to configs/tb-gateway/tb_gateway.yaml:
 ```
-thingsboard.security.accessToken=<token>
+thingsboard.security.accessToken=\<token\>
 ```
+
 Restart the thingsboard gateway
 ```
+cd configs/docker-compose/
 docker-compose restart
 ```
 
