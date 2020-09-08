@@ -71,7 +71,7 @@ Login Thingsboard as tenant and create a gateway
 Copy it's token
 Set it to configs/tb-gateway/tb_gateway.yaml:
 ```
-thingsboard.security.accessToken=\<token\>
+thingsboard.security.accessToken=&lt;token&gt;
 ```
 
 Restart the thingsboard gateway
