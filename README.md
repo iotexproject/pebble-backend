@@ -74,7 +74,7 @@ Copy it &lsquo;s token
 
 Set it to configs/tb-gateway/tb_gateway.yaml:
 ```
-thingsboard.security.accessToken=&lt;token&gt;
+thingsboard.security.accessToken=<token>
 ```
 
 Restart the thingsboard gateway
