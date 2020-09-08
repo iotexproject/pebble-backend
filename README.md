@@ -54,8 +54,17 @@ Device(SDK) --> aws iot --> s3
 - [Install Docker Compose](https://docs.docker.com/compose/install/)
 
 ### Start
+Make directories for start thingsboard and thingsboard gateway
+```
+mkdir ~/{data,logs}
+mkdir -p ~/conf/keys
+mdkir -p ~/conf/tb-gateway/{conf,extensions,logs}
+
 Use the file configs/docker-compose/docker-compose.yml
+```
+cd configs/docker-compose/
 docker-compose up -d
+```
 
 ### Configure gateway
 Login Thingsboard as tenant and create a gateway
@@ -65,3 +74,10 @@ Set it to configs/tb-gateway/tb_gateway.yaml:
 thingsboard.security.accessToken=<token>
 ```
 Restart the thingsboard gateway
+```
+docker-compose restart
+```
+
+(Optional)
+After startup, some default configuration files will be generated
+If you need to modify more, you can refer to the [official document](https://thingsboard.io/docs/iot-gateway/configuration/)

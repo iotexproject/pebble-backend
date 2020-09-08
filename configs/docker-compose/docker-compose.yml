@@ -10,16 +10,16 @@ services:
     environment:
       TB_QUEUE_TYPE: in-memory
     volumes:
-      - ~/data:/data
-      - ~/logs:/var/log/thingsboard
+      - ${HOME}/data:/data
+      - ${HOME}/logs:/var/log/thingsboard
 
   thingsboard-gateway:
      restart: always
      image: "thingsboard/tb-gateway"
      volumes:
-       - ~/conf/tb-gateway/conf:/thingsboard_gateway/config
-       - ~/conf/tb-gateway/extensions:/thingsboard_gateway/extensions
-       - ~/conf/tb-gateway/logs:/thingsboard_gateway/logs
-       - ~/conf/keys:/thingsboard_gateway/keys
+       - ${HOME}/conf/tb-gateway/conf:/thingsboard_gateway/config
+       - ${HOME}/conf/tb-gateway/extensions:/thingsboard_gateway/extensions
+       - ${HOME}/conf/tb-gateway/logs:/thingsboard_gateway/logs
+       - ${HOME}/conf/keys:/thingsboard_gateway/keys
      links:
        - thingsboard
