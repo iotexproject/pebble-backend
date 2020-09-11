@@ -59,6 +59,12 @@
                         "value": "${message.humidity}"
                     },
                     {
+                        "type": "double",
+                        "key": "light",
+                        "value": "${message.light}"
+                    },
+
+                    {
                         "type": "integer",
                         "key": "gyroscope-X",
                         "value": "${message.gyroscope[0]}"
