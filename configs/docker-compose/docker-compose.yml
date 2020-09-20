@@ -23,3 +23,9 @@ services:
        - ${HOME}/conf/keys:/thingsboard_gateway/keys
      links:
        - thingsboard
+       
+  api-server:
+    restart: always
+    image: "iotex-blockchain-iot:latest"
+    env_file:
+      - apiEnv
