@@ -2,7 +2,7 @@
 
 ![](backend_arch.png)
 
-## Quick start.
+## Quick Start
 ### Prerequisites
 ####
 ```
@@ -10,16 +10,16 @@ sudo apt-get update
 sudo apt install python3-pip
 ```
 
-#### Install SDK for mqtt
+#### Install SDK for MQTT
 ```
 pip3 install AWSIoTPythonSDK
 ```
 
-#### startup
+#### A Simple Run
 - start.sh   Start 50 clients to send messages to mqtt in the background.
 - stop.sh    Stop all running clients.
 
-## More explanation
+#### Run With More Options
 run.py is a command to start a client, accepting parameters:
 ```
 -e | --endpoint: Your AWS IoT custom endpoint
@@ -40,7 +40,7 @@ The message will be stored in the 'pebble-store' bucket in s3, like:
 pebble-store/pebble-(1,2,3...50)/<timestamp>
 ```
 
-## Install and configure thingsboard with gateway
+## Integration with Thingsboard
 The [Architecture](https://thingsboard.io/images/gateway/python-gateway-animd-ff.svg)
 ### Our data flow is
 ```
@@ -88,3 +88,6 @@ docker-compose restart
 After startup, some default configuration files will be generated
 
 If you need to modify more, you can refer to the [official document](https://thingsboard.io/docs/iot-gateway/configuration/)
+
+## Integration with IoTeX blockchain
+TBD
