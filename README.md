@@ -40,7 +40,7 @@ The message will be stored in the 'pebble-store' bucket in s3, like:
 pebble-store/pebble-(1,2,3...50)/<timestamp>
 ```
 
-## Setup Cloud Backend
+## Setup MQTT + Storage Backends
 https://iotex.larksuite.com/docs/docuswsC2fyQNSH4fwdahKka5Rr#hbyvmo
 
 ## Integration with Thingsboard
