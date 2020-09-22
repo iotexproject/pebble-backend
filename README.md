@@ -15,7 +15,7 @@ sudo apt install python3-pip
 pip3 install AWSIoTPythonSDK
 ```
 
-#### A Simple Run
+#### Run
 - start.sh   Start 50 clients to send messages to mqtt in the background.
 - stop.sh    Stop all running clients.
 
@@ -39,6 +39,9 @@ The message will be stored in the 'pebble-store' bucket in s3, like:
 ```
 pebble-store/pebble-(1,2,3...50)/<timestamp>
 ```
+
+## Setup Cloud Backend
+https://iotex.larksuite.com/docs/docuswsC2fyQNSH4fwdahKka5Rr#hbyvmo
 
 ## Integration with Thingsboard
 The [Architecture](https://thingsboard.io/images/gateway/python-gateway-animd-ff.svg)
@@ -91,3 +94,4 @@ If you need to modify more, you can refer to the [official document](https://thi
 
 ## Integration with IoTeX blockchain
 TBD
+
