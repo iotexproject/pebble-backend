@@ -1,6 +1,6 @@
 # pebble-backend
 
-![](backend_arch.png)
+![](images/backend_arch.png)
 
 ## Quick Start
 ### Prerequisites
@@ -44,12 +44,15 @@ pebble-store/pebble-(1,2,3...50)/<timestamp>
 https://iotex.larksuite.com/docs/docuswsC2fyQNSH4fwdahKka5Rr#hbyvmo
 
 ## Integration with Thingsboard
-The [Architecture](https://thingsboard.io/images/gateway/python-gateway-animd-ff.svg)
+[![](https://thingsboard.io/images/gateway/python-gateway-animd-ff.svg)](https://thingsboard.io/docs/iot-gateway/what-is-iot-gateway/)
+
 ### Our data flow is
 ```
 Device(SDK) --> aws iot --> s3
                        |
                        + --> thingsboard gateway --> thingsboard
+                                                         |
+                                                         +--> iotex blockchain
 ```
 
 ### Prerequisites
@@ -93,5 +96,36 @@ After startup, some default configuration files will be generated
 If you need to modify more, you can refer to the [official document](https://thingsboard.io/docs/iot-gateway/configuration/)
 
 ## Integration with IoTeX blockchain
-TBD
+In Thingsboard, we use "rule of thingsboard" to send messages to the blockchain.
+As shown
 
+![](images/rule.jpg)
+
+- First, switch with "message type":
+
+A message enters the chain from "input" and then into the node named "message type CommonData". If the "message type" is "Post Telemetry", it will be transmitted to the "Script FilterGateway" node. The "post telemetry" type includes device telemetry data.
+
+![](images/messageType.jpg)
+
+- Then, swicth with device type:
+
+A message enters the "script FilterGateway" from "message type CommonData". If the "deviceType" is not "Gateway"(Because the data entering thingsboard comes through thingsboard gateway, there is data of type "Gateway", which needs to be filtered out), it will be transmitted to the "rest api call Push Blockchain" node. The "not Gateway" and the "post telemetry" are equivalent to all devices.
+
+![](images/deviceType.jpg)
+
+- Last, Push data to the blockchain:
+A message enters the "rest api call Push Blockchain" from upstream. There are all of devices' post telemetries in the node.Then it will use the url to call the api server, and the variable "deviceType" is a metadata field. It comes from the configuration of Thingsboard Gateway.
+
+![](images/apiCurl.jpg)
+
+The Api server is a proxy for rpc-call the IOTEX server. Finally put the data on the blockchain.
+
+The request:
+
+```
+HTTP 1.1 POST /api/v1/topic/{topic}/data
+body is json containing device telemetry data
+```
+
+will be sent to a deployed contract address, and then executed by the contract to do more...
+The important code is [iotexproject/pebble-data-container](https://github.com/iotexproject/pebble-data-container/blob/master/blockchain/put.go#L68)
