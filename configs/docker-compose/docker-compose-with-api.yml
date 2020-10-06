@@ -1,0 +1,32 @@
+
+version: '2.2'
+services:
+  thingsboard:
+    restart: always
+    image: "thingsboard/tb-postgres"
+    ports:
+      - "8080:9090"
+      - "1883:1883"
+      - "5683:5683/udp"
+    environment:
+      TB_QUEUE_TYPE: in-memory
+    volumes:
+      - ${HOME}/data:/data
+      - ${HOME}/logs:/var/log/thingsboard
+
+  thingsboard-gateway:
+     restart: always
+     image: "thingsboard/tb-gateway"
+     volumes:
+       - ${HOME}/conf/tb-gateway/conf:/thingsboard_gateway/config
+       - ${HOME}/conf/tb-gateway/extensions:/thingsboard_gateway/extensions
+       - ${HOME}/conf/tb-gateway/logs:/thingsboard_gateway/logs
+       - ${HOME}/conf/keys:/thingsboard_gateway/keys
+     links:
+       - thingsboard
+       
+  api-server:
+    restart: always
+    image: "iotex-blockchain-iot:latest"
+    env_file:
+      - apiEnv
