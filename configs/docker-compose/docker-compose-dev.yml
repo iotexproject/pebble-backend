@@ -1,0 +1,56 @@
+version: '2.2'
+services:
+  thingsboard:
+    restart: always
+    image: "thingsboard/tb-postgres"
+    ports:
+      - "8080:9090"
+      - "1883:1883"
+      - "5683:5683/udp"
+    environment:
+      TB_QUEUE_TYPE: in-memory
+    volumes:
+      - /home/ubuntu/data:/data
+      - /home/ubuntu/logs:/var/log/thingsboard
+    links:
+       - api-server
+
+  thingsboard-gateway:
+     restart: always
+     image: "thingsboard/tb-gateway"
+     volumes:
+       - /home/ubuntu/conf/tb-gateway/conf:/thingsboard_gateway/config
+       - /home/ubuntu/conf/tb-gateway/extensions:/thingsboard_gateway/extensions
+       - /home/ubuntu/conf/tb-gateway/logs:/thingsboard_gateway/logs
+       - /home/ubuntu/conf/keys:/thingsboard_gateway/keys
+     links:
+       - thingsboard
+       - hmq
+
+  api-server:
+    restart: always
+    image: "iotex-blockchain-iot:latest"
+    env_file:
+      - /home/ubuntu/conf/apiEnv
+
+  minio:
+    restart: always
+    image: minio/minio
+    ports:
+      - 9000:9000
+    environment:
+      MINIO_ACCESS_KEY: AKIAIOSFODNN7EXAMPLE
+      MINIO_SECRET_KEY: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+    command: server /data
+
+  hmq:
+    restart: always
+    image: "hmq:local"
+    ports:
+      - 1884:1883
+    volumes:
+      - /home/ubuntu/conf/hmq/config.json:/config/config.json:ro
+      - /home/ubuntu/conf/hmq/minio/minio.json:/plugins/minio/minio.json:ro
+    links:
+      - minio
+    command: /hmq -c /config/config.json
