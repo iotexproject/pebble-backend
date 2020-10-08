@@ -1,13 +1,10 @@
 {
     "broker": {
         "name": "AWD Iot Pebble MQTT Broker",
-        "hostBak": "a11homvea4zo8t-ats.iot.us-east-1.amazonaws.com",
-	"host": "hmq"
-        "port": 8883,
+	"host": "hmq",
+        "port": 1883,
         "security": {
-            "caCert": "/thingsboard_gateway/keys/AmazonRootCA1.pem",
-            "privateKey": "/thingsboard_gateway/keys/efa1728ea8-private.pem.key",
-            "cert": "/thingsboard_gateway/keys/efa1728ea8-certificate.pem.crt"
+	    "type": "anonymous"
         }
     },
     "mapping": [
@@ -104,7 +101,7 @@
         }
     ],
     "attributeRequests": [
-	{
+    	{
             "deviceNameFilter": "pebble-.*",
             "attributeFilter": ".*",
             "topicExpression": "topic/config/${deviceName}",
