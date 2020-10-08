@@ -1,0 +1,115 @@
+{
+    "broker": {
+        "name": "AWD Iot Pebble MQTT Broker",
+	"host": "hmq",
+        "port": 1883,
+        "security": {
+	    "type": "anonymous"
+        }
+    },
+    "mapping": [
+        {
+            "topicFilter": "device/+/data",
+            "converter": {
+                "type": "json",
+                "deviceNameTopicExpression": "(?<=device/)(.*?)(?=/data)",
+                "deviceTypeTopicExpression": "Pebble",
+                "timeout": 60000,
+                "timeseries": [
+                    {
+                        "type": "integer",
+                        "key": "snr",
+                        "value": "${message.SNR}"
+                    },
+                    {
+                        "type": "double",
+                        "key": "vbat",
+                        "value": "${message.VBAT}"
+                    },
+                    {
+                        "type": "double",
+                        "key": "latitude",
+                        "value": "${message.latitude}"
+                    },
+                    {
+                        "type": "double",
+                        "key": "longitude",
+                        "value": "${message.longitude}"
+                    },
+                    {
+                        "type": "double",
+                        "key": "gas_resistance",
+                        "value": "${message.gas_resistance}"
+                    },
+                    {
+                        "type": "double",
+                        "key": "temperature",
+                        "value": "${message.temperature}"
+                    },
+                    {
+                        "type": "double",
+                        "key": "pressure",
+                        "value": "${message.pressure}"
+                    },
+                    {
+                        "type": "double",
+                        "key": "humidity",
+                        "value": "${message.humidity}"
+                    },
+                    {
+                        "type": "double",
+                        "key": "light",
+                        "value": "${message.light}"
+                    },
+                    {
+                        "type": "integer",
+                        "key": "gyroscope-X",
+                        "value": "${message.gyroscope[0]}"
+                    },
+                    {
+                        "type": "integer",
+                        "key": "gyroscope-Y",
+                        "value": "${message.gyroscope[1]}"
+                    },
+                    {
+                        "type": "integer",
+                        "key": "gyroscope-Z",
+                        "value": "${message.gyroscope[2]}"
+                    },
+                    {
+                        "type": "integer",
+                        "key": "accelerometer-X",
+                        "value": "${message.accelerometer[0]}"
+                    },
+                    {
+                        "type": "integer",
+                        "key": "accelerometer-Y",
+                        "value": "${message.accelerometer[1]}"
+                    },
+                    {
+                        "type": "integer",
+                        "key": "accelerometer-Z",
+                        "value": "${message.accelerometer[2]}"
+                    },
+                    {
+                        "type": "string",
+                        "key": "timestamp",
+                        "value": "${message.timestamp}"
+                    }
+                ]
+            }
+        }
+    ],
+    "attributeRequests": [
+    	{
+            "deviceNameFilter": "pebble-.*",
+            "attributeFilter": ".*",
+            "topicExpression": "topic/config/${deviceName}",
+            "valueExpression": "{\"${attributeKey}\":\"${attributeValue}\"}"
+        }
+    ],
+    "connectRequests": [],
+    "disconnectRequests": [],
+    "attributeUpdates": [],
+    "serverSideRpc": []
+}
