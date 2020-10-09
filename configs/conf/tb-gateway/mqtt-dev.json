@@ -1,6 +1,6 @@
 {
     "broker": {
-        "name": "AWD Iot Pebble MQTT Broker",
+        "name": "HMQ Pebble MQTT Broker",
 	"host": "hmq",
         "port": 1883,
         "security": {

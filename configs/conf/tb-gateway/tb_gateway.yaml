@@ -2,7 +2,7 @@ thingsboard:
   host: thingsboard
   port: 1883
   security:
-    accessToken: SUtUgdrhN5dWUeg5SJTU
+    accessToken: xxxxxxxxxxxxx
 storage:
   type: memory
   read_records_count: 100

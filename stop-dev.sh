@@ -1,3 +1,55 @@
 #!/bin/bash
 
-kill `ps -ef|grep './run-dev.py' | grep -v grep | awk '{print $2}'`
+# Colour codes
+YELLOW='\033[0;33m'
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+
+pushd () {
+    command pushd "$@" > /dev/null
+}
+
+popd () {
+    command popd "$@" > /dev/null
+}
+
+function checkDockerPermissions() {
+    docker ps > /dev/null
+    if [ $? = 1 ];then
+        echo -e "your $RED [$USER] $NC not privilege docker" 
+        echo -e "please run $RED [sudo bash] $NC first"
+        echo -e "Or docker not install "
+        exit 1
+    fi
+}
+
+function checkDockerCompose() {
+    docker-compose --version > /dev/null 2>&1
+    if [ $? -eq 127 ];then
+        echo -e "$RED docker-compose command not found $NC"
+        echo -e "Please install it first"
+        exit 1
+    fi
+}
+
+function main() {
+    if [ ! -d ~/.pebble_docker_compose ];then
+        echo -e "${RED} You must setup pebble first. ${NC}"
+        exit 0
+    fi
+
+    checkDockerPermissions
+    checkDockerCompose
+
+    PROJECT_ABS_DIR=$(cd "$(dirname "$0")";pwd)
+    
+    pushd $(dirname $(echo ~/.pebble_docker_compose))
+    docker-compose stop
+    popd
+
+    pushd $PROJECT_ABS_DIR/scripts
+    ./stop-mock-dev.sh
+    popd
+}
+
+main $@

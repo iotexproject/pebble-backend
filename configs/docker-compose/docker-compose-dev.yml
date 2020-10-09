@@ -2,7 +2,7 @@ version: '2.2'
 services:
   thingsboard:
     restart: always
-    image: "thingsboard/tb-postgres"
+    image: ${IMGAE_THINGSBOARD}
     ports:
       - "8080:9090"
       - "1883:1883"
@@ -10,32 +10,30 @@ services:
     environment:
       TB_QUEUE_TYPE: in-memory
     volumes:
-      - /home/ubuntu/data:/data
-      - /home/ubuntu/logs:/var/log/thingsboard
-    links:
-       - api-server
+      - ${PEBBLE_VAR_DATA_DIR}:/data
+      - ${PEBBLE_VAR_LOGS_DIR}:/var/log/thingsboard
 
   thingsboard-gateway:
      restart: always
-     image: "thingsboard/tb-gateway"
+     image: ${IMAGE_THINGSBOARD_GATEWAY}
      volumes:
-       - /home/ubuntu/conf/tb-gateway/conf:/thingsboard_gateway/config
-       - /home/ubuntu/conf/tb-gateway/extensions:/thingsboard_gateway/extensions
-       - /home/ubuntu/conf/tb-gateway/logs:/thingsboard_gateway/logs
-       - /home/ubuntu/conf/keys:/thingsboard_gateway/keys
+       - ${PEBBLE_VAR_CONF_TB_GATEWAY_CONF_DIR}:/thingsboard_gateway/config
+       - ${PEBBLE_VAR_CONF_TB_GATEWAY_EXTENSIONS_DIR}:/thingsboard_gateway/extensions
+       - ${PEBBLE_VAR_CONF_TB_GATEWAY_LOGS_DIR}:/thingsboard_gateway/logs
+       - ${PEBBLE_VAR_CONF_TB_GATEWAY_KEYS_DIR}:/thingsboard_gateway/keys
      links:
        - thingsboard
        - hmq
 
   api-server:
     restart: always
-    image: "iotex-blockchain-iot:latest"
+    image: ${IMAGE_BLOCKCHAIN_DATA}
     env_file:
-      - /home/ubuntu/conf/apiEnv
+      - ${PEBBLE_VAR_CONF_API_SERVER_DIR}/apiEnv
 
   minio:
     restart: always
-    image: minio/minio
+    image: ${IMAGE_MINIO}
     ports:
       - 9000:9000
     environment:
@@ -45,12 +43,12 @@ services:
 
   hmq:
     restart: always
-    image: "hmq:local"
+    image: ${IMAGE_HMQ}
     ports:
       - 1884:1883
     volumes:
-      - /home/ubuntu/conf/hmq/config.json:/config/config.json:ro
-      - /home/ubuntu/conf/hmq/minio/minio.json:/plugins/minio/minio.json:ro
+      - ${PEBBLE_VAR_CONF_HMQ_DIR}/config.json:/config/config.json:ro
+      - ${PEBBLE_VAR_CONF_HMQ_MINIO_DIR}/minio.json:/plugins/minio/minio.json:ro
     links:
       - minio
     command: /hmq -c /config/config.json
