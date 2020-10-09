@@ -82,7 +82,7 @@ function setImagesVar4Official() {
 }
 
 function setImagesVar4Build() {
-    IMAGE_BLOCKCHAIN=iotex-blockchain-data:local
+    IMAGE_BLOCKCHAIN_DATA=iotex-blockchain-data:local
     IMAGE_HMQ=iotex-hmq:local
 }
 
@@ -124,7 +124,9 @@ function setVar() {
     # Some commands
     MKDIR="mkdir -p"
     COPY="cp -vf"
+    SUCOPY="sudo cp -vf"
     RM="sudo rm -rf"
+    CHOWN="sudo chown 799:799 -R"
     DOCKER_PULL_CMD="docker pull"
     DOCKER_BUILD_CMD="docker build . -t"
     DOCKER_COMPOSE_CMD="docker-compose"
@@ -162,8 +164,8 @@ function pullCodes() {
     popd
 
     # fetch hmq code
-    $FETCH_CODE_CMD $PEBBLE_HMQ_CODE_URL $PEBBLE_HMQ_CODE_BRANCH
-    pushd $PEBBLE_HMQ_CODE_BRANCH
+    $FETCH_CODE_CMD $PEBBLE_HMQ_CODE_URL $PEBBLE_HMQ_CODE
+    pushd $PEBBLE_HMQ_CODE
     $CHECKOUT_CODE_BRANCH $PEBBLE_HMQ_CODE_BRANCH
     popd
     popd
@@ -189,22 +191,26 @@ function buildImages() {
 
 function copyConfig() {
     echo -e "$YELLOW Copy the configure files... $NC"
+
     # Copy docker-compose
-    $COPY $PROJECT_ABS_DIR/configs/docker-compse/docker-compose-dev.yml $DOCKER_COMPOSE_DIR/docker-compose.yml
+    $COPY $PROJECT_ABS_DIR/configs/docker-compose/docker-compose-dev.yml $DOCKER_COMPOSE_DIR/docker-compose.yml
 
     # Copy apiEnv
-    $COPY $PROJECT_ABS_DIR/configs/docker-compse/apiEnv-dev $PEBBLE_VAR_CONF_API_SERVER_DIR/apiEnv
-
-    # Copy thingsboard gateway
-    $COPY $PROJECT_ABS_DIR/configs/conf/tb-gateway/tb_gateway.yaml $PEBBLE_VAR_CONF_TB_GATEWAY_CONF_DIR/tb_gateway.yaml
-    $COPY $PROJECT_ABS_DIR/configs/conf/tb-gateway/mqtt-dev.json $PEBBLE_VAR_CONF_TB_GATEWAY_CONF_DIR/mqtt.json
+    $COPY $PROJECT_ABS_DIR/configs/docker-compose/apiEnv-dev $PEBBLE_VAR_CONF_API_SERVER_DIR/apiEnv
 
     # Cpoy Hmq
-    $COPY $PROJECT_ABS_DIR/configs/hmq/config.json $PEBBLE_VAR_CONF_HMQ_DIR/config.json
-    $COPY $PROJECT_ABS_DIR/configs/hmq/minio/minio.json $PEBBLE_VAR_CONF_HMQ_MINIO_DIR/minio.json
+    $COPY $PROJECT_ABS_DIR/configs/conf/hmq/config.json $PEBBLE_VAR_CONF_HMQ_DIR/config.json
+    $COPY $PROJECT_ABS_DIR/configs/conf/hmq/minio/minio.json $PEBBLE_VAR_CONF_HMQ_MINIO_DIR/minio.json
     echo -e "$YELLOW Copy done. $NC"
 
     $WHITE_LINE
+}
+
+function overTBDefault() {
+    # Copy thingsboard gateway
+    $SUCOPY $PROJECT_ABS_DIR/configs/conf/tb-gateway/tb_gateway.yaml $PEBBLE_VAR_CONF_TB_GATEWAY_CONF_DIR/tb_gateway.yaml
+    $SUCOPY $PROJECT_ABS_DIR/configs/conf/tb-gateway/mqtt-dev.json $PEBBLE_VAR_CONF_TB_GATEWAY_CONF_DIR/mqtt.json
+
 }
 
 function exportAll() {
@@ -228,7 +234,7 @@ function exportAll() {
 }
 
 function makeEnvFile() {
-    echo 'PEBBLE_VAR=$HOME/pebble-var
+    sudo echo "PEBBLE_VAR=$HOME/pebble-var
 PEBBLE_VAR_CONF_DIR=$PEBBLE_VAR/conf
 
 IMGAE_THINGSBOARD=thingsboard/tb-postgres:latest
@@ -251,7 +257,7 @@ PEBBLE_VAR_CONF_API_SERVER_DIR=$PEBBLE_VAR_CONF_DIR/api-server
 
 PEBBLE_VAR_CONF_HMQ_DIR=$PEBBLE_VAR_CONF_DIR/hmq
 PEBBLE_VAR_CONF_HMQ_MINIO_DIR=$PEBBLE_VAR_CONF_HMQ_DIR/minio
-' > $DOCKER_COMPOSE_DIR/.env
+" > $DOCKER_COMPOSE_DIR/.env
 }
 
 function cleanAll() {
@@ -310,9 +316,29 @@ function main() {
     copyConfig || exit 2
     makeEnvFile || exit 2
 
+    $CHOWN $PEBBLE_VAR
+
     exportAll
 
     echo "$DOCKER_COMPOSE_DIR/.env" > ~/.pebble_docker_compose
+
+    # start thingsboard, it will make some default configs
+    echo -e "${YELLOW} Now start the service just to let ${NC}"
+    echo -e "${YELLOW} thingsboard generate the default configurations ${NC}"
+    echo -e "${YELLOW} file, and then overwrite them with our configurations ${NC}"
+    echo -e "${YELLOW} it need about 60s ${NC}"
+    pushd $DOCKER_COMPOSE_DIR
+    docker-compose up -d thingsboard
+    echo -e "${YELLOW} Starting...${NC}"
+    sleep 60
+    echo -e "${YELLOW} Stop... ${NC}"
+    docker-compose stop
+    popd
+
+    echo -e "${YELLOW} Overwrite the default configurations ${NC}"
+    overTBDefault || exit 2
+    echo -e "${YELLOW} Done. ${NC}"
+    $CHOWN $PEBBLE_VAR
 }
 
 main $@
@@ -323,4 +349,6 @@ echo -e "${YELLOW} gateway to modify the ${NC}"
 echo -e "${RED} thingsboard.security.accessToken ${NC}"
 echo -e "${YELLOW} in the configuration file ${NC}"
 echo -e "${RED} $PEBBLE_VAR_CONF_TB_GATEWAY_CONF_DIR/tb_gateway.yaml, ${NC}"
+echo -e "${YELLOW} Compile the deployment contract and complete ${NC}"
+echo -e "${RED} $PEBBLE_VAR_CONF_API_SERVER_DIR/apiEnv ${NC}"
 echo -e "${YELLOW} and then restart the service. ${NC}"

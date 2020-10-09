@@ -33,7 +33,7 @@ function checkDockerCompose() {
 }
 
 function main() {
-    if [ ! -d ~/.pebble_docker_compose ];then
+    if [ ! -f ~/.pebble_docker_compose ];then
         echo -e "${RED} You must setup pebble first. ${NC}"
         exit 0
     fi
@@ -41,14 +41,8 @@ function main() {
     checkDockerPermissions
     checkDockerCompose
 
-    PROJECT_ABS_DIR=$(cd "$(dirname "$0")";pwd)
-    
-    pushd $(dirname $(echo ~/.pebble_docker_compose))
+    pushd $(dirname $(cat ~/.pebble_docker_compose))
     docker-compose up -d
-    popd
-
-    pushd $PROJECT_ABS_DIR/scripts
-    ./mock-dev.sh
     popd
 }
 
