@@ -21,9 +21,6 @@ services:
        - ${PEBBLE_VAR_CONF_TB_GATEWAY_EXTENSIONS_DIR}:/thingsboard_gateway/extensions
        - ${PEBBLE_VAR_CONF_TB_GATEWAY_LOGS_DIR}:/thingsboard_gateway/logs
        - ${PEBBLE_VAR_CONF_TB_GATEWAY_KEYS_DIR}:/thingsboard_gateway/keys
-     links:
-       - thingsboard
-       - hmq
 
   api-server:
     restart: always
@@ -49,6 +46,4 @@ services:
     volumes:
       - ${PEBBLE_VAR_CONF_HMQ_DIR}/config.json:/config/config.json:ro
       - ${PEBBLE_VAR_CONF_HMQ_MINIO_DIR}/minio.json:/plugins/minio/minio.json:ro
-    links:
-      - minio
     command: /hmq -c /config/config.json

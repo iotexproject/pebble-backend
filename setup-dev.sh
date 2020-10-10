@@ -206,7 +206,7 @@ function copyConfig() {
     $WHITE_LINE
 }
 
-function overTBDefault() {
+function overTBGDefault() {
     # Copy thingsboard gateway
     $SUCOPY $PROJECT_ABS_DIR/configs/conf/tb-gateway/tb_gateway.yaml $PEBBLE_VAR_CONF_TB_GATEWAY_CONF_DIR/tb_gateway.yaml
     $SUCOPY $PROJECT_ABS_DIR/configs/conf/tb-gateway/mqtt-dev.json $PEBBLE_VAR_CONF_TB_GATEWAY_CONF_DIR/mqtt.json
@@ -324,19 +324,19 @@ function main() {
 
     # start thingsboard, it will make some default configs
     echo -e "${YELLOW} Now start the service just to let ${NC}"
-    echo -e "${YELLOW} thingsboard generate the default configurations ${NC}"
+    echo -e "${YELLOW} thingsboard-gateway generate the default configurations ${NC}"
     echo -e "${YELLOW} file, and then overwrite them with our configurations ${NC}"
-    echo -e "${YELLOW} it need about 60s ${NC}"
+    echo -e "${YELLOW} it need about 20s ${NC}"
     pushd $DOCKER_COMPOSE_DIR
-    docker-compose up -d thingsboard
+    docker-compose up -d thingsboard-gateway
     echo -e "${YELLOW} Starting...${NC}"
-    sleep 60
+    sleep 20
     echo -e "${YELLOW} Stop... ${NC}"
     docker-compose stop
     popd
 
     echo -e "${YELLOW} Overwrite the default configurations ${NC}"
-    overTBDefault || exit 2
+    overTBGDefault || exit 2
     echo -e "${YELLOW} Done. ${NC}"
     $CHOWN $PEBBLE_VAR
 }

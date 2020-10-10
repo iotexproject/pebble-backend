@@ -105,6 +105,7 @@
     ],
     "attributeRequests": [
 	{
+	    "topicFilter": ".*",
             "deviceNameFilter": "pebble-.*",
             "attributeFilter": ".*",
             "topicExpression": "topic/config/${deviceName}",
