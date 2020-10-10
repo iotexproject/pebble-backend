@@ -333,6 +333,7 @@ function main() {
     sleep 20
     echo -e "${YELLOW} Stop... ${NC}"
     docker-compose stop
+    docker rm docker-compose_thingsboard-gateway_1
     popd
 
     echo -e "${YELLOW} Overwrite the default configurations ${NC}"
