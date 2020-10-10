@@ -5,19 +5,100 @@
 ## Quick Start
 ### Prerequisites
 ####
+
+- [Install Docker CE](https://docs.docker.com/engine/installation/)
+- [Install Docker Compose](https://docs.docker.com/compose/install/)
+
+#### Install SDK for MQTT
+
 ```
 sudo apt-get update
 sudo apt install python3-pip
-```
-
-#### Install SDK for MQTT
-```
 pip3 install AWSIoTPythonSDK
 ```
 
-#### Run
-- start.sh   Start 50 clients to send messages to mqtt in the background.
-- stop.sh    Stop all running clients.
+### Install and start backend service
+
+```
+./setup-dev.sh
+./start-dev.sh
+```
+
+- Create Thingsboard Gateway
+Login thingsboard UI, Default username/password: tenant@thingsboard.org/tenant
+![](images/create-gateway-1.jpg)
+
+![](images/create-gateway-2.jpg)
+
+![](images/create-gateway-3.jpg)
+
+![](images/create-gateway-4.jpg)
+
+- Modify config of the gateway
+```
+sudo vim ~/pebble-var/conf/tb-gateway/conf/tb_gateway.yaml
+```
+Replace accessToken: xxxxxxxxxxxxx with the newly copied token 
+```
+thingsboard:
+  host: thingsboard
+  port: 1883
+  security:
+    accessToken: xxxxxxxxxxxxx
+storage:
+  type: memory
+  read_records_count: 100
+  max_records_count: 100000
+
+connectors:
+  - name: MQTT Broker Connector
+    type: mqtt
+    configuration: mqtt.json
+```
+
+- Restart the gateway service
+```
+docker restart docker-compose_thingsboard-gateway_1
+```
+
+### Start mock data
+```
+cd scripts
+./mock-dev.sh
+```
+
+## Setup Thingsboard UI
+### Import Dashboard
+![](images/import-dashboard-1.jpg)
+
+drop example/dashboard/pebble_1.json to the box
+![](images/import-dashboard-2.jpg)
+
+![](images/import-dashboard-3.jpg)
+
+Modify
+![](images/import-dashboard-4.jpg)
+
+Set to pebble-1
+![](images/import-dashboard-5.jpg)
+
+### Import RULE CHAIN
+![](images/import-rule-1.jpg)
+
+drop example/thingsboard-rule/pebble.json to the box
+![](images/import-rule-2.jpg)
+
+Apply
+![](images/import-rule-3.jpg)
+
+Back to here and make it to the root
+![](images/import-rule-4.jpg)
+
+
+## Other tool description
+### Mock tool
+- scripts/mock.sh         Start 50 clients to send messages to mqtt in the background.
+- scripts/stop-mock.sh    Stop all running clients.
 
 #### Run With More Options
 run.py is a command to start a client, accepting parameters:
@@ -55,9 +136,6 @@ Device(SDK) --> aws iot --> s3
                                                          +--> iotex blockchain
 ```
 
-### Prerequisites
-- [Install Docker CE](https://docs.docker.com/engine/installation/)
-- [Install Docker Compose](https://docs.docker.com/compose/install/)
 
 ### Start
 Make directories for start thingsboard and thingsboard gateway
