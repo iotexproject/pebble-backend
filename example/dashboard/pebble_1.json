@@ -1607,7 +1607,7 @@
     },
     "states": {
       "default": {
-        "name": "topic/nrf-352656103381086",
+        "name": "Pebble",
         "root": true,
         "layouts": {
           "main": {
@@ -1741,7 +1741,7 @@
           "resolveMultiple": false,
           "singleEntity": {
             "entityType": "DEVICE",
-            "id": "0c1b8860-0940-11eb-9004-fd9473583f80"
+            "id": "b3ff3b30-0abc-11eb-8e8c-e7551282cf48"
           }
         }
       }
