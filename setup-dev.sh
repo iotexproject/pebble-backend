@@ -126,7 +126,7 @@ function setVar() {
     COPY="cp -vf"
     SUCOPY="sudo cp -vf"
     RM="sudo rm -rf"
-    CHOWN="sudo chown 799:799 -R"
+    CHOWN="sudo chown -R 799:799"
     DOCKER_PULL_CMD="docker pull"
     DOCKER_BUILD_CMD="docker build . -t"
     DOCKER_COMPOSE_CMD="docker-compose"
@@ -315,10 +315,9 @@ function main() {
 
     copyConfig || exit 2
     makeEnvFile || exit 2
-
-    $CHOWN $PEBBLE_VAR
-
     exportAll
+    
+    $CHOWN $PEBBLE_VAR
 
     echo "$DOCKER_COMPOSE_DIR/.env" > ~/.pebble_docker_compose
 
