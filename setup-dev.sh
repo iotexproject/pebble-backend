@@ -114,10 +114,10 @@ function setVar() {
     PEBBLE_VAR_CODE_DIR=$PEBBLE_VAR/code
 
     # Code var and directories
-    PEBBLE_API_SERVER_CODE_URL=git@github.com:iotexproject/pebble-data-container.git
+    PEBBLE_API_SERVER_CODE_URL=https://github.com/iotexproject/pebble-data-container.git
     PEBBLE_API_SERVER_CODE_BRANCH=master
     PEBBLE_API_SERVER_CODE=$PEBBLE_VAR_CODE_DIR/pebble-data-container
-    PEBBLE_HMQ_CODE_URL=git@github.com:iotexproject/hmq.git
+    PEBBLE_HMQ_CODE_URL=https://github.com/iotexproject/hmq.git
     PEBBLE_HMQ_CODE_BRANCH=add-plugin-minio
     PEBBLE_HMQ_CODE=$PEBBLE_VAR_CODE_DIR/hmq
 

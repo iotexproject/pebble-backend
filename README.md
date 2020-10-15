@@ -9,6 +9,17 @@
 - [Install Docker CE](https://docs.docker.com/engine/installation/)
 - [Install Docker Compose](https://docs.docker.com/compose/install/)
 
+TIPS:
+
+Add the 'ubuntu' user group to the 'docker' group, then command 'sudo' is not needed when running docker
+
+/etc/group
+
+```
+docker:x:999:ubuntu
+```
+
+
 #### Install SDK for MQTT
 
 ```
