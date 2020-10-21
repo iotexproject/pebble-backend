@@ -28,6 +28,9 @@ sudo apt install python3-pip
 pip3 install AWSIoTPythonSDK
 ```
 
+#### Config `git`
+Config your `git` with correct SSH key to make sure `git clone` will work properly.
+
 ### Install and start backend service
 
 ```
