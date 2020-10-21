@@ -1,7 +1,5 @@
 # pebble-backend
 
-![](images/backend_arch.png)
-
 ## Quick Start
 ### Prerequisites
 #### 0. Find a Linux Machine
