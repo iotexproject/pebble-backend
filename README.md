@@ -2,14 +2,15 @@
 
 ## Quick Start
 ### Prerequisites
-#### 0. Find a Linux Machine
+0. Find a Linux Machine
+
 To run the backend services, you will need a machine with least 2CPU and 4GB memory and runs Debian or Ubuntu. You could grab one from AWS or GCP; if you want to use your local PC/laptop, make sure it has a public IP (e.g., using ngrok), where pebble can send data to.
 
-#### 1. [Install Docker CE](https://docs.docker.com/engine/installation/)
+1. [Install Docker CE](https://docs.docker.com/engine/installation/)
 
-#### 2. [Install Docker Compose](https://docs.docker.com/compose/install/)
+2. [Install Docker Compose](https://docs.docker.com/compose/install/)
 
-#### 3. (Optional) Add Current User to `Docker` Group
+3. (Optional) Add Current User to `Docker` Group
 
 Adding the the current user group (e.g., `ubuntu`) to the `docker` group will allow you to use `docker` command without `sudo`.
 
@@ -22,7 +23,7 @@ cat /etc/group | grep docker
 ```
 should return something like `docker:x:999:ubuntu`.
 
-#### 4. Install SDK for MQTT
+4. Install SDK for MQTT
 
 ```
 sudo apt-get update
@@ -30,7 +31,7 @@ sudo apt install python3-pip
 pip3 install AWSIoTPythonSDK
 ```
 
-#### 5. Make `git clone` Work
+5. Make `git clone` Work
 Config your `git`, e.g., with the correct SSH key, to make sure `git clone` will work properly.
 
 ### Start Pebble Backend
