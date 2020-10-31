@@ -103,7 +103,10 @@
             }
         }
     ],
-    "attributeRequests": [
+    "attributeRequests": [],
+    "connectRequests": [],
+    "disconnectRequests": [],
+    "attributeUpdates": [
 	{
 	    "topicFilter": ".*",
             "deviceNameFilter": ".*",
@@ -112,8 +115,5 @@
             "valueExpression": "{\"${attributeKey}\":\"${attributeValue}\"}"
         }
     ],
-    "connectRequests": [],
-    "disconnectRequests": [],
-    "attributeUpdates": [],
     "serverSideRpc": []
 }
