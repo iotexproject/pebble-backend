@@ -916,9 +916,9 @@
               "bgColor": "#32577e",
               "textColor": "#ffffff"
             },
-            "entityParameters": "{}",
             "entityAttributeType": "SHARED_SCOPE",
-            "buttonText": "BEEP ME"
+            "buttonText": "BEEP ME",
+            "entityParameters": "{\n    \"beep\": \"1000\"\n}"
           },
           "title": "Find Pebble",
           "dropShadow": true,
@@ -1581,9 +1581,9 @@
               "bgColor": "#32577e",
               "textColor": "#ffffff"
             },
-            "entityParameters": "{}",
-            "entityAttributeType": "SERVER_SCOPE",
-            "buttonText": "CONFIG ME"
+            "entityAttributeType": "SHARED_SCOPE",
+            "buttonText": "CONFIG ME",
+            "entityParameters": "{\n    \"bulk_upload\": \"0\",\n    \"data_channel\": \"8183\",\n    \"upload_period\": \"10\",\n    \"bulk_upload_sampling_cnt\": \"60\",\n    \"bulk_upload_sampling_freq\": \"10\",\n    \"beep\": \"1000\"\n}"
           },
           "title": "Config Data Collection",
           "dropShadow": true,
