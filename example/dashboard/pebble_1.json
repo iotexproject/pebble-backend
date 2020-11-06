@@ -16,7 +16,9 @@
           "datasources": [
             {
               "type": "entity",
+              "name": null,
               "entityAliasId": "6c582a64-78dc-f39d-6446-33c9005d9ec8",
+              "filterId": null,
               "dataKeys": [
                 {
                   "name": "longitude",
@@ -24,7 +26,12 @@
                   "type": "timeseries",
                   "color": "#2196f3",
                   "settings": {},
-                  "_hash": 0.34951529223108135
+                  "_hash": 0.34951529223108135,
+                  "units": null,
+                  "decimals": null,
+                  "funcBody": null,
+                  "usePostProcessing": false,
+                  "postFuncBody": ""
                 },
                 {
                   "name": "latitude",
@@ -122,8 +129,25 @@
                   "label": "temperature",
                   "type": "timeseries",
                   "color": "#ff8a00",
-                  "settings": {},
-                  "_hash": 0.6656929725290397
+                  "settings": {
+                    "showLines": true,
+                    "fillLines": false,
+                    "showPoints": false,
+                    "showPointShape": "circle",
+                    "pointShapeFormatter": "var size = radius * Math.sqrt(Math.PI) / 2;\nctx.moveTo(x - size, y - size);\nctx.lineTo(x + size, y + size);\nctx.moveTo(x - size, y + size);\nctx.lineTo(x + size, y - size);",
+                    "showPointsLineWidth": 5,
+                    "showPointsRadius": 3,
+                    "axisPosition": "left",
+                    "comparisonSettings": {
+                      "showValuesForComparison": true
+                    }
+                  },
+                  "_hash": 0.6656929725290397,
+                  "units": null,
+                  "decimals": null,
+                  "funcBody": null,
+                  "usePostProcessing": null,
+                  "postFuncBody": null
                 }
               ]
             }
@@ -142,14 +166,13 @@
               "limit": 25000
             }
           },
-          "showTitle": true,
+          "showTitle": false,
           "backgroundColor": "#ffffff",
           "color": "#32577e",
           "padding": "0",
           "settings": {
             "shadowSize": 0,
             "fontColor": "#545454",
-            "fontSize": 10,
             "xaxis": {
               "showLabels": true,
               "color": "#bdbdbd"
@@ -157,13 +180,15 @@
             "yaxis": {
               "showLabels": true,
               "color": "#bdbdbd",
-              "tickSize": 0.2,
+              "tickSize": 0.1,
               "tickDecimals": 1
             },
             "grid": {
               "verticalLines": false,
               "horizontalLines": false,
-              "outlineWidth": 0
+              "outlineWidth": 0,
+              "color": "#545454",
+              "tickColor": "#DDDDDD"
             },
             "stack": false,
             "tooltipIndividual": true,
@@ -174,21 +199,24 @@
             },
             "smoothLines": false,
             "tooltipCumulative": true,
-            "hideZeros": false
+            "hideZeros": false,
+            "fontSize": 8,
+            "thresholdsLineWidth": 2
           },
-          "title": "Environmental temperature History",
+          "title": "Ambient Temperature History",
           "dropShadow": true,
           "enableFullscreen": true,
           "titleStyle": {
             "fontSize": "12px",
             "color": "#32577e",
             "marginLeft": "-5px",
-            "width": "50vw"
+            "width": "50vw",
+            "height": "20px"
           },
           "mobileHeight": null,
           "showTitleIcon": false,
           "iconColor": "rgba(0, 0, 0, 0.87)",
-          "iconSize": "24px",
+          "iconSize": "0",
           "titleTooltip": "",
           "widgetStyle": {
             "padding": "0 10px 10px 10px",
@@ -196,8 +224,8 @@
           },
           "showLegend": false,
           "legendConfig": {
-            "direction": "column",
-            "position": "bottom",
+            "direction": "row",
+            "position": "top",
             "showMin": false,
             "showMax": false,
             "showAvg": true,
@@ -205,7 +233,8 @@
           },
           "useDashboardTimewindow": true,
           "displayTimewindow": false,
-          "margin": "0 0 0 -4px"
+          "margin": "0 0 0 -4px",
+          "titleIcon": ""
         },
         "id": "ae70b820-2ded-d133-3679-0db94f0a2187"
       },
@@ -252,23 +281,23 @@
               "limit": 25000
             }
           },
-          "showTitle": true,
+          "showTitle": false,
           "backgroundColor": "#ffffff",
           "color": "#32577e",
           "padding": "0",
           "settings": {
             "shadowSize": 0,
             "fontColor": "#545454",
-            "fontSize": 10,
+            "fontSize": 8,
             "xaxis": {
               "showLabels": true,
-              "color": "#feffff"
+              "color": "#cccccc"
             },
             "yaxis": {
               "showLabels": true,
               "color": "#cccccc",
-              "tickSize": 2,
-              "tickDecimals": 1
+              "tickSize": 0.1,
+              "tickDecimals": 2
             },
             "grid": {
               "color": "#545454",
@@ -286,7 +315,7 @@
             },
             "tooltipCumulative": true
           },
-          "title": "Environmental humidity History",
+          "title": "Relative Humidity History",
           "dropShadow": true,
           "enableFullscreen": true,
           "titleStyle": {
@@ -362,17 +391,17 @@
               "limit": 25000
             }
           },
-          "showTitle": true,
+          "showTitle": false,
           "backgroundColor": "#ffffff",
           "color": "#32577e",
           "padding": "0",
           "settings": {
             "shadowSize": 0,
             "fontColor": "#545454",
-            "fontSize": 10,
+            "fontSize": 8,
             "xaxis": {
               "showLabels": true,
-              "color": "#feffff"
+              "color": "#cccccc"
             },
             "yaxis": {
               "showLabels": true,
@@ -396,7 +425,7 @@
             },
             "tooltipCumulative": true
           },
-          "title": "Air pressure History",
+          "title": "Barometric Pressure History",
           "dropShadow": true,
           "enableFullscreen": true,
           "titleStyle": {
@@ -428,113 +457,6 @@
           "margin": "0 0 0 -4px"
         },
         "id": "8e0b761f-b27d-08ca-38ad-eb6a9b4d0a12"
-      },
-      "846129f4-be1e-db6e-24a4-33109ea1a7f4": {
-        "isSystemType": true,
-        "bundleAlias": "charts",
-        "typeAlias": "basic_timeseries",
-        "type": "timeseries",
-        "title": "Timeseries - Flot",
-        "sizeX": 16,
-        "sizeY": 10,
-        "row": 0,
-        "col": 2,
-        "config": {
-          "datasources": [
-            {
-              "type": "entity",
-              "name": null,
-              "entityAliasId": "6c582a64-78dc-f39d-6446-33c9005d9ec8",
-              "filterId": null,
-              "dataKeys": [
-                {
-                  "name": "gas_resistance",
-                  "label": "gas_resistance",
-                  "type": "timeseries",
-                  "color": "#ff8a00",
-                  "settings": {},
-                  "_hash": 0.8583120245249711
-                }
-              ]
-            }
-          ],
-          "timewindow": {
-            "hideInterval": false,
-            "hideAggregation": false,
-            "hideAggInterval": false,
-            "selectedTab": 0,
-            "realtime": {
-              "timewindowMs": 300000,
-              "interval": 1000
-            },
-            "aggregation": {
-              "type": "NONE",
-              "limit": 25000
-            }
-          },
-          "showTitle": true,
-          "backgroundColor": "#ffffff",
-          "color": "#32577e",
-          "padding": "0",
-          "settings": {
-            "shadowSize": 0,
-            "fontColor": "#545454",
-            "fontSize": 10,
-            "xaxis": {
-              "showLabels": true,
-              "color": "#feffff"
-            },
-            "yaxis": {
-              "showLabels": true,
-              "color": "#cccccc",
-              "tickSize": 100000
-            },
-            "grid": {
-              "verticalLines": false,
-              "horizontalLines": false,
-              "outlineWidth": 0
-            },
-            "stack": false,
-            "tooltipIndividual": true,
-            "timeForComparison": "months",
-            "xaxisSecond": {
-              "axisPosition": "top",
-              "showLabels": true
-            },
-            "tooltipCumulative": true
-          },
-          "title": "Air quality History",
-          "dropShadow": true,
-          "enableFullscreen": true,
-          "titleStyle": {
-            "fontSize": "12px",
-            "color": "#32577e",
-            "marginLeft": "-5px",
-            "width": "50vw"
-          },
-          "mobileHeight": null,
-          "showTitleIcon": false,
-          "iconColor": "rgba(0, 0, 0, 0.87)",
-          "iconSize": "24px",
-          "titleTooltip": "",
-          "widgetStyle": {
-            "padding": "0 10px 10px 10px",
-            "borderRadius": "0 16px 16px 0"
-          },
-          "showLegend": false,
-          "legendConfig": {
-            "direction": "column",
-            "position": "bottom",
-            "showMin": false,
-            "showMax": false,
-            "showAvg": true,
-            "showTotal": false
-          },
-          "useDashboardTimewindow": false,
-          "displayTimewindow": false,
-          "margin": "0 0 0 -4px"
-        },
-        "id": "846129f4-be1e-db6e-24a4-33109ea1a7f4"
       },
       "8d9b4a72-017d-55a7-22e1-ff640864c020": {
         "isSystemType": true,
@@ -579,21 +501,22 @@
               "limit": 256
             }
           },
-          "showTitle": true,
+          "showTitle": false,
           "backgroundColor": "#ffffff",
           "color": "#32577e",
           "padding": "0",
           "settings": {
             "shadowSize": 0,
             "fontColor": "#545454",
-            "fontSize": 10,
+            "fontSize": 8,
             "xaxis": {
               "showLabels": true,
-              "color": "#feffff"
+              "color": "#cccccc"
             },
             "yaxis": {
               "showLabels": true,
               "color": "#cccccc",
+              "tickDecimals": 2,
               "tickSize": 1
             },
             "grid": {
@@ -612,7 +535,7 @@
             },
             "tooltipCumulative": true
           },
-          "title": "Signal-to-noise ratio of NB-IoT/LET-M History",
+          "title": "NB-IoT/LET-M Signal-to-Noise Ratio History",
           "dropShadow": true,
           "enableFullscreen": true,
           "titleStyle": {
@@ -704,17 +627,17 @@
               "limit": 25000
             }
           },
-          "showTitle": true,
+          "showTitle": false,
           "backgroundColor": "#ffffff",
           "color": "#32577e",
           "padding": "0",
           "settings": {
             "shadowSize": 0,
             "fontColor": "#545454",
-            "fontSize": 10,
+            "fontSize": 8,
             "xaxis": {
               "showLabels": true,
-              "color": "#feffff"
+              "color": "#cccccc"
             },
             "yaxis": {
               "showLabels": true,
@@ -737,7 +660,7 @@
             },
             "tooltipCumulative": true
           },
-          "title": "Acceleration along History",
+          "title": "Acceleration History",
           "dropShadow": true,
           "enableFullscreen": true,
           "titleStyle": {
@@ -829,20 +752,20 @@
               "limit": 20
             }
           },
-          "showTitle": true,
+          "showTitle": false,
           "backgroundColor": "#ffffff",
           "color": "#32577e",
           "padding": "0",
           "settings": {
-            "fontSize": 10,
+            "fontSize": 8,
             "xaxis": {
               "showLabels": true,
-              "color": "#feffff"
+              "color": "#cccccc"
             },
             "yaxis": {
               "showLabels": true,
               "color": "#cccccc",
-              "tickSize": 5
+              "tickSize": 15
             },
             "grid": {
               "color": "#545454",
@@ -863,7 +786,7 @@
             "shadowSize": 0,
             "fontColor": "#545454"
           },
-          "title": "Angular velocity History",
+          "title": "Angular Velocity History",
           "dropShadow": true,
           "enableFullscreen": true,
           "titleStyle": {
@@ -916,9 +839,9 @@
               "bgColor": "#32577e",
               "textColor": "#ffffff"
             },
+            "entityParameters": "{\n    \"beep\": \"2000\"\n}",
             "entityAttributeType": "SHARED_SCOPE",
-            "buttonText": "BEEP ME",
-            "entityParameters": "{\n    \"beep\": \"1000\"\n}"
+            "buttonText": "BEEP ME"
           },
           "title": "Find Pebble",
           "dropShadow": true,
@@ -988,8 +911,8 @@
           "color": "rgba(0, 0, 0, 0.87)",
           "padding": "0px",
           "settings": {
-            "cardHtml": "<div class='card'>\n    <div class=\"title\">pressure</div>\n    <div class='value'>\n        <div class=\"base\">\n            <img width=\"24px\" src=\"https://thingsboardlogos.s3-us-west-1.amazonaws.com/PRESSURE.png\" />\n            <div class=\"text\">${#0:2}<br />PA</div>\n        </div>\n        \n    </div>\n</div>",
-            "cardCss": ".card {\n    width: 100%;\n   height: 100%;\n   display: flex;\n   flex-direction: column;\n   justify-content: flex-start;\n   align-items: flex-start;\n}\n\n.card .title {\n    text-transform: capitalize;\n    color: #325771;\n    font-size: 12px;\n    font-weight: bold;\n}\n\n.card .value {\n    display: flex;\n    justify-content: flex-start;\n    align-items: center;\n    width: 100%;\n    height: 100%;\n}\n\n.card .value .base{\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    column-gap: 5px;\n}\n\n.card .value .base .label{\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    align-items: baseline;\n}\n\n.card .value .text{\n    font-size: 20px;\n    color: #000;\n    font-weight: bold;\n}\n\n.card .unit{\n    font-weight: thin;\n    font-size: small;\n    color: #000;\n}"
+            "cardHtml": "<div class='card'>\n    <div class=\"title\">air pressure</div>\n    <div class='value'>\n        <div class=\"base\">\n            <img width=\"24px\" src=\"https://thingsboardlogos.s3-us-west-1.amazonaws.com/PRESSURE.png\" />\n            <div class=\"text\">${#0:2} PA</div>\n        </div>\n        \n    </div>\n</div>",
+            "cardCss": ".card {\n    width: 100%;\n   height: 100%;\n   display: flex;\n   flex-direction: column;\n   justify-content: flex-start;\n   align-items: flex-start;\n}\n\n.card .title {\n    text-transform: capitalize;\n    color: #325771;\n    font-size: 12px;\n    font-weight: bold;\n}\n\n.card .value {\n    display: flex;\n    justify-content: flex-start;\n    align-items: center;\n    width: 100%;\n    height: 100%;\n}\n\n.card .value .base{\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    column-gap: 5px;\n}\n\n.card .value .base .label{\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    align-items: baseline;\n}\n\n.card .value .text{\n    font-size: 18px;\n    color: #000;\n    font-weight: bold;\n}\n\n.card .unit{\n    font-weight: thin;\n    font-size: small;\n    color: #000;\n}"
           },
           "title": "New HTML Value Card",
           "dropShadow": true,
@@ -1053,7 +976,7 @@
           "padding": "0",
           "settings": {
             "cardHtml": "<div class='card'>\n    <div class=\"title\">temperature</div>\n    <div class='value'>\n        <div class=\"base\">\n            <img height=\"36px\" src=\"https://thingsboardlogos.s3-us-west-1.amazonaws.com/TEMP.png\" />\n            <div class=\"text\">${#0:2} ℃</div>\n        </div>\n        \n    </div>\n</div>",
-            "cardCss": ".card {\n    width: 100%;\n   height: 100%;\n   display: flex;\n   flex-direction: column;\n   justify-content: flex-start;\n   align-items: flex-start;\n}\n\n.card .title {\n    text-transform: capitalize;\n    color: #325771;\n    font-size: 12px;\n    font-weight: bold;\n}\n\n.card .value {\n    display: flex;\n    justify-content: flex-start;\n    align-items: center;\n    width: 100%;\n    height: 100%;\n}\n\n.card .value .base{\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    column-gap: 5px;\n}\n\n.card .value .base .label{\n    display: flex;\n    flex-direction: row;\n    justify-content: center;\n    align-items: baseline;\n}\n\n.card .value .text{\n    font-size: 24px;\n    color: #000;\n    font-weight: bold;\n}\n\n.card .unit{\n    font-weight: thin;\n    font-size: small;\n    color: #000;\n}"
+            "cardCss": ".card {\n    width: 100%;\n   height: 100%;\n   display: flex;\n   flex-direction: column;\n   justify-content: flex-start;\n   align-items: flex-start;\n}\n\n.card .title {\n    text-transform: capitalize;\n    color: #325771;\n    font-size: 12px;\n    font-weight: bold;\n}\n\n.card .value {\n    display: flex;\n    justify-content: flex-start;\n    align-items: center;\n    width: 100%;\n    height: 100%;\n}\n\n.card .value .base{\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    column-gap: 5px;\n}\n\n.card .value .base .label{\n    display: flex;\n    flex-direction: row;\n    justify-content: center;\n    align-items: baseline;\n}\n\n.card .value .text{\n    font-size: 18px;\n    color: #000;\n    font-weight: bold;\n}\n\n.card .unit{\n    font-weight: thin;\n    font-size: small;\n    color: #000;\n}"
           },
           "title": "New HTML Value Card",
           "dropShadow": true,
@@ -1117,7 +1040,7 @@
           "padding": "0",
           "settings": {
             "cardHtml": "<div class='card'>\n    <div class=\"title\">humidity</div>\n    <div class='value'>\n        <div class=\"base\">\n            <img width=\"24px\" src=\"https://thingsboardlogos.s3-us-west-1.amazonaws.com/HUMI.png\" />\n            <div class=\"text\">${#0:2} %</div>\n        </div>\n        \n    </div>\n</div>",
-            "cardCss": ".card {\n    width: 100%;\n   height: 100%;\n   display: flex;\n   flex-direction: column;\n   justify-content: flex-start;\n   align-items: flex-start;\n}\n\n.card .title {\n    text-transform: capitalize;\n    color: #325771;\n    font-size: 12px;\n    font-weight: bold;\n}\n\n.card .value {\n    display: flex;\n    justify-content: flex-start;\n    align-items: center;\n    width: 100%;\n    height: 100%;\n}\n\n.card .value .base{\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    column-gap: 5px;\n}\n\n.card .value .base .label{\n    display: flex;\n    flex-direction: row;\n    justify-content: center;\n    align-items: baseline;\n}\n\n.card .value .text{\n    font-size: 24px;\n    color: #000;\n    font-weight: bold;\n}\n\n.card .unit{\n    font-weight: thin;\n    font-size: small;\n    color: #000;\n}"
+            "cardCss": ".card {\n    width: 100%;\n   height: 100%;\n   display: flex;\n   flex-direction: column;\n   justify-content: flex-start;\n   align-items: flex-start;\n}\n\n.card .title {\n    text-transform: capitalize;\n    color: #325771;\n    font-size: 12px;\n    font-weight: bold;\n}\n\n.card .value {\n    display: flex;\n    justify-content: flex-start;\n    align-items: center;\n    width: 100%;\n    height: 100%;\n}\n\n.card .value .base{\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    column-gap: 5px;\n}\n\n.card .value .base .label{\n    display: flex;\n    flex-direction: row;\n    justify-content: center;\n    align-items: baseline;\n}\n\n.card .value .text{\n    font-size: 18px;\n    color: #000;\n    font-weight: bold;\n}\n\n.card .unit{\n    font-weight: thin;\n    font-size: small;\n    color: #000;\n}"
           },
           "title": "New HTML Value Card",
           "dropShadow": true,
@@ -1266,13 +1189,13 @@
               "timewindowMs": 60000
             }
           },
-          "showTitle": true,
+          "showTitle": false,
           "backgroundColor": "#ffffff",
           "color": "#32577e",
           "padding": "0",
           "settings": {
             "shadowSize": 0,
-            "fontSize": 10,
+            "fontSize": 8,
             "xaxis": {
               "showLabels": true,
               "color": "#cccccc"
@@ -1280,8 +1203,8 @@
             "yaxis": {
               "showLabels": true,
               "color": "#cccccc",
-              "tickSize": 1,
-              "tickDecimals": 2
+              "tickDecimals": 2,
+              "tickSize": 0.1
             },
             "grid": {
               "verticalLines": false,
@@ -1299,7 +1222,7 @@
             },
             "fontColor": "#545454"
           },
-          "title": "New Timeseries - Flot",
+          "title": "Battery Voltage History",
           "dropShadow": true,
           "enableFullscreen": true,
           "titleStyle": {
@@ -1370,7 +1293,7 @@
           "padding": "0",
           "settings": {
             "cardHtml": "<div class='card'>\n    <div class=\"title\">snr</div>\n    <div class='value'>\n        <div class=\"base\">\n            <img width=\"24px\" src=\"https://thingsboardlogos.s3-us-west-1.amazonaws.com/PRESSURE.png\" />\n            <div class=\"text\">${#0:2} dB</div>\n        </div>\n        \n    </div>\n</div>",
-            "cardCss": ".card {\n    width: 100%;\n   height: 100%;\n   display: flex;\n   flex-direction: column;\n   justify-content: flex-start;\n   align-items: flex-start;\n}\n\n.card .title {\n    text-transform: uppercase;\n    color: #325771;\n    font-size: 12px;\n    font-weight: bold;\n}\n\n.card .value {\n    display: flex;\n    justify-content: flex-start;\n    align-items: center;\n    width: 100%;\n    height: 100%;\n}\n\n.card .value .base{\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    column-gap: 5px;\n}\n\n.card .value .base .label{\n    display: flex;\n    flex-direction: row;\n    justify-content: center;\n    align-items: baseline;\n}\n\n.card .value .text{\n    font-size: 24px;\n    color: #000;\n    font-weight: bold;\n}\n\n.card .unit{\n    font-weight: thin;\n    font-size: small;\n    color: #000;\n}"
+            "cardCss": ".card {\n    width: 100%;\n   height: 100%;\n   display: flex;\n   flex-direction: column;\n   justify-content: flex-start;\n   align-items: flex-start;\n}\n\n.card .title {\n    text-transform: uppercase;\n    color: #325771;\n    font-size: 12px;\n    font-weight: bold;\n}\n\n.card .value {\n    display: flex;\n    justify-content: flex-start;\n    align-items: center;\n    width: 100%;\n    height: 100%;\n}\n\n.card .value .base{\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    column-gap: 5px;\n}\n\n.card .value .base .label{\n    display: flex;\n    flex-direction: row;\n    justify-content: center;\n    align-items: baseline;\n}\n\n.card .value .text{\n    font-size: 18px;\n    color: #000;\n    font-weight: bold;\n}\n\n.card .unit{\n    font-weight: thin;\n    font-size: small;\n    color: #000;\n}"
           },
           "title": "New HTML Value Card",
           "dropShadow": true,
@@ -1433,8 +1356,8 @@
           "color": "rgba(0, 0, 0, 0.87)",
           "padding": "0",
           "settings": {
-            "cardCss": ".card {\n    width: 100%;\n   height: 100%;\n   display: flex;\n   flex-direction: column;\n   justify-content: flex-start;\n   align-items: flex-start;\n}\n\n.card .title {\n    text-transform: capitalize;\n    color: #325771;\n    font-size: 12px;\n    font-weight: bold;\n}\n\n.card .value {\n    display: flex;\n    justify-content: flex-start;\n    align-items: center;\n    width: 100%;\n    height: 100%;\n}\n\n.card .value .base{\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    column-gap: 5px;\n}\n\n.card .value .base .label{\n    display: flex;\n    flex-direction: row;\n    justify-content: center;\n    align-items: baseline;\n}\n\n.card .value .text{\n    font-size: 24px;\n    color: #000;\n    font-weight: bold;\n}\n\n.card .unit{\n    font-weight: thin;\n    font-size: small;\n    color: #000;\n}",
-            "cardHtml": "<div class='card'>\n    <div class=\"title\">temperature</div>\n    <div class='value'>\n        <div class=\"base\">\n            <img height=\"30px\" src=\"https://thingsboardlogos.s3-us-west-1.amazonaws.com/BATTERY.png\" />\n            <div class=\"text\">${#0:2} V</div>\n        </div>\n        \n    </div>\n</div>"
+            "cardCss": ".card {\n    width: 100%;\n   height: 100%;\n   display: flex;\n   flex-direction: column;\n   justify-content: flex-start;\n   align-items: flex-start;\n}\n\n.card .title {\n    text-transform: capitalize;\n    color: #325771;\n    font-size: 12px;\n    font-weight: bold;\n}\n\n.card .value {\n    display: flex;\n    justify-content: flex-start;\n    align-items: center;\n    width: 100%;\n    height: 100%;\n}\n\n.card .value .base{\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    column-gap: 5px;\n}\n\n.card .value .base .label{\n    display: flex;\n    flex-direction: row;\n    justify-content: center;\n    align-items: baseline;\n}\n\n.card .value .text{\n    font-size: 18px;\n    color: #000;\n    font-weight: bold;\n}\n\n.card .unit{\n    font-weight: thin;\n    font-size: small;\n    color: #000;\n}",
+            "cardHtml": "<div class='card'>\n    <div class=\"title\">Battery</div>\n    <div class='value'>\n        <div class=\"base\">\n            <img height=\"30px\" src=\"https://thingsboardlogos.s3-us-west-1.amazonaws.com/BATTERY.png\" />\n            <div class=\"text\">${#0:2} V</div>\n        </div>\n        \n    </div>\n</div>"
           },
           "title": "New HTML Value Card",
           "dropShadow": true,
@@ -1581,9 +1504,9 @@
               "bgColor": "#32577e",
               "textColor": "#ffffff"
             },
-            "entityAttributeType": "SHARED_SCOPE",
+            "entityAttributeType": "SERVER_SCOPE",
             "buttonText": "CONFIG ME",
-            "entityParameters": "{\n    \"bulk_upload\": \"0\",\n    \"data_channel\": \"8183\",\n    \"upload_period\": \"10\",\n    \"bulk_upload_sampling_cnt\": \"60\",\n    \"bulk_upload_sampling_freq\": \"10\",\n    \"beep\": \"1000\"\n}"
+            "entityParameters": "{\n    \"bulk_upload\": \"1\",\n    \"data_channel\": \"38\",  \n    \"upload_period\": \"10\", \n    \"bulk_upload_sampling_cnt\": \"60\", \n    \"bulk_upload_sampling_freq\": \"10\"\n}\n"
           },
           "title": "Config Data Collection",
           "dropShadow": true,
@@ -1600,7 +1523,9 @@
           },
           "useDashboardTimewindow": true,
           "showLegend": false,
-          "actions": {},
+          "actions": {
+            "headerButton": []
+          },
           "targetDeviceAliases": [],
           "datasources": [],
           "targetDeviceAliasIds": [
@@ -1648,7 +1573,7 @@
           "enableFullscreen": false,
           "margin": "0 -4px 0 0",
           "widgetStyle": {
-            "padding": "0 10px 10px 10px",
+            "padding": "0 5px 10px 10px",
             "borderRadius": "16px 0 0 16px"
           },
           "titleStyle": {
@@ -1711,6 +1636,127 @@
         "row": 0,
         "col": 0,
         "id": "2aa27082-f2e2-43e0-564e-f177ba74f6c6"
+      },
+      "42b7cf65-1b0f-a6db-a0b1-211a2539fc3f": {
+        "isSystemType": true,
+        "bundleAlias": "charts",
+        "typeAlias": "basic_timeseries",
+        "type": "timeseries",
+        "title": "New widget",
+        "sizeX": 8,
+        "sizeY": 5,
+        "config": {
+          "datasources": [
+            {
+              "type": "entity",
+              "name": null,
+              "entityAliasId": "6c582a64-78dc-f39d-6446-33c9005d9ec8",
+              "filterId": null,
+              "dataKeys": [
+                {
+                  "name": "gas_resistance",
+                  "type": "timeseries",
+                  "label": "gas_resistance",
+                  "color": "#ff8a00",
+                  "settings": {
+                    "excludeFromStacking": false,
+                    "hideDataByDefault": false,
+                    "disableDataHiding": false,
+                    "removeFromLegend": false,
+                    "showLines": true,
+                    "fillLines": false,
+                    "showPoints": false,
+                    "showPointShape": "circle",
+                    "pointShapeFormatter": "var size = radius * Math.sqrt(Math.PI) / 2;\nctx.moveTo(x - size, y - size);\nctx.lineTo(x + size, y + size);\nctx.moveTo(x - size, y + size);\nctx.lineTo(x + size, y - size);",
+                    "showPointsLineWidth": 5,
+                    "showPointsRadius": 3,
+                    "showSeparateAxis": false,
+                    "axisPosition": "left",
+                    "thresholds": [],
+                    "comparisonSettings": {
+                      "showValuesForComparison": true
+                    }
+                  },
+                  "_hash": 0.1276508471094251,
+                  "units": null,
+                  "decimals": null,
+                  "funcBody": null,
+                  "usePostProcessing": null,
+                  "postFuncBody": null
+                }
+              ]
+            }
+          ],
+          "timewindow": {
+            "realtime": {
+              "timewindowMs": 60000
+            }
+          },
+          "showTitle": false,
+          "backgroundColor": "#fff",
+          "color": "#32577e",
+          "padding": "0",
+          "settings": {
+            "fontColor": "#545454",
+            "fontSize": 8,
+            "xaxis": {
+              "showLabels": true,
+              "color": "#cccccc"
+            },
+            "yaxis": {
+              "showLabels": true,
+              "color": "#cccccc",
+              "tickDecimals": 2,
+              "tickSize": 1
+            },
+            "grid": {
+              "verticalLines": false,
+              "horizontalLines": false,
+              "outlineWidth": 0,
+              "color": "#545454",
+              "tickColor": "#DDDDDD"
+            },
+            "stack": false,
+            "tooltipIndividual": true,
+            "timeForComparison": "months",
+            "xaxisSecond": {
+              "axisPosition": "top",
+              "showLabels": true
+            },
+            "shadowSize": 0,
+            "tooltipCumulative": true
+          },
+          "title": "New Timeseries - Flot",
+          "dropShadow": true,
+          "enableFullscreen": true,
+          "titleStyle": {
+            "fontSize": "16px",
+            "fontWeight": 400
+          },
+          "useDashboardTimewindow": true,
+          "showTitleIcon": false,
+          "iconColor": "rgba(0, 0, 0, 0.87)",
+          "iconSize": "24px",
+          "titleTooltip": "",
+          "margin": "0 0 0 -4px",
+          "widgetStyle": {
+            "padding": "0 10px 10px 10px",
+            "borderRadius": "0 16px 16px 0"
+          },
+          "showLegend": false,
+          "legendConfig": {
+            "direction": "column",
+            "position": "bottom",
+            "showMin": false,
+            "showMax": false,
+            "showAvg": true,
+            "showTotal": false
+          },
+          "displayTimewindow": false
+        },
+        "row": 0,
+        "col": 0,
+        "id": "42b7cf65-1b0f-a6db-a0b1-211a2539fc3f"
       }
     },
     "states": {
@@ -1745,13 +1791,6 @@
                 "sizeY": 2,
                 "mobileHeight": null,
                 "row": 2,
-                "col": 15
-              },
-              "846129f4-be1e-db6e-24a4-33109ea1a7f4": {
-                "sizeX": 9,
-                "sizeY": 2,
-                "mobileHeight": null,
-                "row": 6,
                 "col": 15
               },
               "8d9b4a72-017d-55a7-22e1-ff640864c020": {
@@ -1846,6 +1885,12 @@
                 "sizeY": 2,
                 "row": 8,
                 "col": 0
+              },
+              "42b7cf65-1b0f-a6db-a0b1-211a2539fc3f": {
+                "sizeX": 9,
+                "sizeY": 2,
+                "row": 6,
+                "col": 15
               }
             },
             "gridSettings": {
@@ -1872,7 +1917,7 @@
           "resolveMultiple": false,
           "singleEntity": {
             "entityType": "DEVICE",
-            "id": "892f4660-12a6-11eb-9102-cb09ff6461e4"
+            "id": "b9ebf4b0-13e1-11eb-8119-5529b9b18409"
           }
         }
       }
@@ -1881,15 +1926,10 @@
       "hideInterval": false,
       "hideAggregation": false,
       "hideAggInterval": true,
-      "selectedTab": 1,
-      "history": {
-        "historyType": 0,
+      "selectedTab": 0,
+      "realtime": {
         "timewindowMs": 60000,
-        "interval": 1000,
-        "fixedTimewindow": {
-          "startTimeMs": 1603094914310,
-          "endTimeMs": 1603181314310
-        }
+        "interval": 1000
       },
       "aggregation": {
         "type": "NONE",
