@@ -112,7 +112,7 @@ This script continously produce data points according to pebble spec and inject 
 ### 2. Import Predefined Dashboard
 ![](images/import-dashboard-1.jpg)
 
-drop example/dashboard/pebble_1.json to the box
+drop example/dashboard/pebble_template.json to the box
 
 ![](images/import-dashboard-2.jpg)
 
