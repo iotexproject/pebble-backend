@@ -109,10 +109,17 @@ cd scripts
 ```
 This script continously produce data points according to pebble spec and inject it into the local `1884` port. If you run into an issue, e.g., not see data flow in, you can run directly `python3 ./run-dev.py -e localhost -p 1884 -id device/pebble-1/data -pf ../data/sample.txt` to debug.
 
-### 2. Import Predefined Dashboard
+### 2. Import Predefined Widgets bundles
+![](images/import-widget-1.jpg)
+
+drop example/widgets-bundles/custom.json to the box, and click "import"
+
+![](images/import-widget-2.jpg)
+
+### 3. Import Predefined Dashboard
 ![](images/import-dashboard-1.jpg)
 
-drop example/dashboard/pebble_template.json to the box
+drop example/dashboard/pebble_template.json to the box, and click "import"
 
 ![](images/import-dashboard-2.jpg)
 
