@@ -104,7 +104,12 @@
         }
     ],
     "attributeRequests": [],
-    "connectRequests": [],
+    "connectRequests": [
+        {
+            "topicFilter": "device/+/connect",
+            "deviceNameTopicExpression": "(?<=device\/)(.*?)(?=\/connect)"
+        }        
+    ],
     "disconnectRequests": [],
     "attributeUpdates": [
 	{
