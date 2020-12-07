@@ -95,6 +95,16 @@
                         "type": "string",
                         "key": "timestamp",
                         "value": "${message.timestamp}"
+                    },
+                    {
+                        "type": "string",
+                        "key": "rsa_n",
+                        "value": "${message.RSA_N}"
+                    },
+                    {
+                        "type":	"string",
+                        "key": "rsa_e",
+                        "value": "${message.RSA_E}"
                     }
                 ]
             }
