@@ -101,6 +101,11 @@
                     },
                     {
                         "type": "string",
+                        "key": "random",
+                        "value": "${message.random}"
+                    },
+                    {
+                        "type": "string",
                         "key": "rsa_n",
                         "value": "${message.RSA_N}"
                     },
