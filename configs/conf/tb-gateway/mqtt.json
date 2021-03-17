@@ -113,6 +113,16 @@
                         "type":	"string",
                         "key": "rsa_e",
                         "value": "${message.RSA_E}"
+                    },
+                    {
+                        "type": "string",
+                        "key": "signature_r",
+                        "value": "${signature_r}"
+                    },
+                    {
+                        "type": "string",
+                        "key": "signature_s",
+                        "value": "${signature_s}"
                     }
                 ]
             }
