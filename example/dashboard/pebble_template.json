@@ -1776,6 +1776,146 @@
         "row": 0,
         "col": 0,
         "id": "d4bfc95f-478d-fe33-1a75-a69ba5841e07"
+      },
+      "25b2a025-3c5d-1a6c-6688-b4791bb69768": {
+        "isSystemType": true,
+        "bundleAlias": "cards",
+        "typeAlias": "html_value_card",
+        "type": "latest",
+        "title": "New widget",
+        "sizeX": 7.5,
+        "sizeY": 3,
+        "config": {
+          "datasources": [
+            {
+              "type": "entity",
+              "name": null,
+              "entityAliasId": "6c582a64-78dc-f39d-6446-33c9005d9ec8",
+              "filterId": null,
+              "dataKeys": [
+                {
+                  "name": "signature_r",
+                  "type": "timeseries",
+                  "label": "signature_r",
+                  "color": "#2196f3",
+                  "settings": {},
+                  "_hash": 0.07061374623194383,
+                  "units": null,
+                  "decimals": null,
+                  "funcBody": null,
+                  "usePostProcessing": null,
+                  "postFuncBody": null
+                }
+              ]
+            }
+          ],
+          "timewindow": {
+            "realtime": {
+              "timewindowMs": 60000
+            }
+          },
+          "showTitle": true,
+          "backgroundColor": "#fff",
+          "color": "#32577e",
+          "padding": "0px",
+          "settings": {
+            "cardHtml": "<div class='card'>\n    <style>\n@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');\n</style> \n    <!--<div class=\"title\">Random</div>-->\n    <div class='value'>\n        <div class=\"base\">\n            <!--<img height=\"36px\" src=\"https://thingsboardlogos.s3-us-west-1.amazonaws.com/TEMP.png\" />-->\n            <div class=\"text\">${#0:2}</div>\n        </div>\n        \n    </div>\n</div>",
+            "cardCss": ".card {\n    width: 100%;\n   height: 100%;\n   display: flex;\n   flex-direction: column;\n   justify-content: flex-start;\n   align-items: flex-start;\n}\n\n.card .title {\n    text-transform: capitalize;\n    color: #325771;\n    font-size: 12px;\n    font-weight: bold;\n}\n\n.card .value {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    width: 100%;\n    height: 100%;\n}\n\n.card .value .base{\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    column-gap: 5px;\n    justify-content: center;\n}\n\n.card .value .base .label{\n    display: flex;\n    flex-direction: row;\n    justify-content: center;\n    align-items: baseline;\n}\n\n.card .value .text{\n    font-family: 'Oswald', sans-serif;\n    font-size: 16px;\n    color: #000;\n    /*font-weight: bold;*/\n}\n\n.card .unit{\n    font-weight: thin;\n    font-size: small;\n    color: #000;\n}"
+          },
+          "title": "signature_r",
+          "dropShadow": true,
+          "enableFullscreen": false,
+          "widgetStyle": {
+            "padding": "0 10px 10px 10px",
+            "borderRadius": "16px"
+          },
+          "titleStyle": {
+            "fontSize": "12px",
+            "color": "#32577e",
+            "marginLeft": "-5px",
+            "width": "50vw"
+          },
+          "useDashboardTimewindow": true,
+          "showLegend": false,
+          "actions": {},
+          "showTitleIcon": false,
+          "iconColor": "rgba(0, 0, 0, 0.87)",
+          "iconSize": "24px",
+          "titleTooltip": ""
+        },
+        "row": 0,
+        "col": 0,
+        "id": "25b2a025-3c5d-1a6c-6688-b4791bb69768"
+      },
+      "dd08843e-c966-1df7-c3a5-43d91431f377": {
+        "isSystemType": true,
+        "bundleAlias": "cards",
+        "typeAlias": "html_value_card",
+        "type": "latest",
+        "title": "New widget",
+        "sizeX": 7.5,
+        "sizeY": 3,
+        "config": {
+          "datasources": [
+            {
+              "type": "entity",
+              "name": null,
+              "entityAliasId": "6c582a64-78dc-f39d-6446-33c9005d9ec8",
+              "filterId": null,
+              "dataKeys": [
+                {
+                  "name": "signature_s",
+                  "type": "timeseries",
+                  "label": "signature_s",
+                  "color": "#2196f3",
+                  "settings": {},
+                  "_hash": 0.07061374623194383,
+                  "units": null,
+                  "decimals": null,
+                  "funcBody": null,
+                  "usePostProcessing": null,
+                  "postFuncBody": null
+                }
+              ]
+            }
+          ],
+          "timewindow": {
+            "realtime": {
+              "timewindowMs": 60000
+            }
+          },
+          "showTitle": true,
+          "backgroundColor": "#fff",
+          "color": "#32577e",
+          "padding": "0px",
+          "settings": {
+            "cardHtml": "<div class='card'>\n    <style>\n@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');\n</style> \n    <!--<div class=\"title\">Random</div>-->\n    <div class='value'>\n        <div class=\"base\">\n            <!--<img height=\"36px\" src=\"https://thingsboardlogos.s3-us-west-1.amazonaws.com/TEMP.png\" />-->\n            <div class=\"text\">${#0:2}</div>\n        </div>\n        \n    </div>\n</div>",
+            "cardCss": ".card {\n    width: 100%;\n   height: 100%;\n   display: flex;\n   flex-direction: column;\n   justify-content: flex-start;\n   align-items: flex-start;\n}\n\n.card .title {\n    text-transform: capitalize;\n    color: #325771;\n    font-size: 12px;\n    font-weight: bold;\n}\n\n.card .value {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    width: 100%;\n    height: 100%;\n}\n\n.card .value .base{\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    column-gap: 5px;\n    justify-content: center;\n}\n\n.card .value .base .label{\n    display: flex;\n    flex-direction: row;\n    justify-content: center;\n    align-items: baseline;\n}\n\n.card .value .text{\n    font-family: 'Oswald', sans-serif;\n    font-size: 16px;\n    color: #000;\n    /*font-weight: bold;*/\n}\n\n.card .unit{\n    font-weight: thin;\n    font-size: small;\n    color: #000;\n}"
+          },
+          "title": "signature_s",
+          "dropShadow": true,
+          "enableFullscreen": false,
+          "widgetStyle": {
+            "padding": "0 10px 10px 10px",
+            "borderRadius": "16px"
+          },
+          "titleStyle": {
+            "fontSize": "12px",
+            "color": "#32577e",
+            "marginLeft": "-5px",
+            "width": "50vw"
+          },
+          "useDashboardTimewindow": true,
+          "showLegend": false,
+          "actions": {},
+          "showTitleIcon": false,
+          "iconColor": "rgba(0, 0, 0, 0.87)",
+          "iconSize": "24px",
+          "titleTooltip": ""
+        },
+        "row": 0,
+        "col": 0,
+        "id": "dd08843e-c966-1df7-c3a5-43d91431f377"
       }
     },
     "states": {
@@ -1917,6 +2057,18 @@
                 "sizeY": 2,
                 "row": 10,
                 "col": 3
+              },
+              "25b2a025-3c5d-1a6c-6688-b4791bb69768": {
+                "sizeX": 12,
+                "sizeY": 2,
+                "row": 12,
+                "col": 0
+              },
+              "dd08843e-c966-1df7-c3a5-43d91431f377": {
+                "sizeX": 12,
+                "sizeY": 2,
+                "row": 12,
+                "col": 12
               }
             },
             "gridSettings": {
