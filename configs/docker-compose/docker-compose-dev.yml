@@ -1,5 +1,20 @@
 version: '2.2'
 services:
+  proxy:
+    container_name: proxy
+    restart: unless-stopped
+    image: staticfloat/nginx-certbot
+    ports:
+        - 80:80/tcp
+        - 443:443/tcp
+    environment:
+        CERTBOT_EMAIL: donngming@iotex.io
+    volumes:
+      - $PEBBLE_VAR_CONF_PROXY_DIR:/etc/nginx/user.conf.d:ro
+      - letsencrypt:/etc/letsencrypt
+    links:
+      - thingsboard
+
   thingsboard:
     restart: always
     image: ${IMGAE_THINGSBOARD}
